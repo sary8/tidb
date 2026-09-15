@@ -160,8 +160,6 @@ func runImportQuery(
 		failpoint.Return(errors.New("injected failure after import query optimization"))
 	})
 	b := newExecutorBuilder(ctx, workerSession, workerSession.schema, nil)
-	b.forDataReaderBuilder = true
-	b.dataReaderTS = vars.SnapshotTS
 	e := b.build(p)
 	if b.err != nil {
 		return b.err
